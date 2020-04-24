@@ -3,7 +3,7 @@ import requests
 import json
 import pprint
 
-token = 'NDBiYmZiYzgtY2JkMC00MWU2LWE3NTUtYTE2MDcxMDg3NzYzZDhjYzJlMDctMzI2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+token = ############
 
 #### CREATE A TEAM ######
 
@@ -15,9 +15,9 @@ body = {
     "name": "TEAM test"
 }
 
-post_response = requests.post(
-    url, headers= headers, data= json.dumps(body)).json()
-print(post_response)
+# post_response = requests.post(
+#     url, headers= headers, data= json.dumps(body)).json()
+# print(post_response)
 
 
 #### GET LIST OF TEAMS ######
@@ -30,10 +30,10 @@ print (parsed)
 
 #### CREATE A ROOM ###
 
+# Get team ID
 teams = get_response['items']
 
 for team in teams:
     if team['name'] == "TEAM test":
         teamID = team['id']
 
-print (f'The team ID is {teamID}')
