@@ -3,7 +3,7 @@ import requests
 import json
 import pprint
 
-token = 'NDBiYmZiYzgtY2JkMC00MWU2LWE3NTUtYTE2MDcxMDg3NzYzZDhjYzJlMDctMzI2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+token = 'OGIzYjdjMDktMGI0OC00MGM4LWJkNmEtYjA0N2MzZDZmMGQyNjdhZTM4M2ItMDM1_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
 
 #### CREATE A TEAM ######
 
@@ -25,8 +25,8 @@ body = {
 get_response = requests.get(url, headers= headers).json()
 
 # Pretty print
-parsed = json.dumps(get_response, indent=2, sort_keys=True)
-print (parsed)
+#parsed = json.dumps(get_response, indent=2, sort_keys=True)
+#print (parsed)
 
 # Get team ID
 teams = get_response['items']
@@ -39,28 +39,27 @@ for team in teams:
 
 room_url = 'https://api.ciscospark.com/v1/rooms'
 room_body = {
-    "title": "ROOM test",
+    "title": "ROOM2 test",
     "teamId": teamID
 }
 
 # post_room = requests.post(
-#     room_url, headers= headers, data= json.dumps(room_body)).json()
+#    room_url, headers= headers, data= json.dumps(room_body)).json()
 
 get_rooms =  requests.get(room_url, headers= headers).json()
 
 rooms = get_rooms['items']
-
 for room in rooms:
     if room['title'] == "ROOM test":
         roomid = room['id']
-        #print (json.dumps(room, indent=2))
+        print(roomid)
 
 #### POST A MESSAGE INTO THE ROOM #####
 
 msg_url = 'https://api.ciscospark.com/v1/messages'
 msg_body= {
     "roomId": roomid,
-    "text": "This is the seconde test message"
+    "text": "Test message"
 }
 
 msg_post = requests.post(
@@ -68,3 +67,15 @@ msg_post = requests.post(
 
 print (json.dumps(msg_post, indent=2))
 
+##### MANAGE MEMBERSHIPS ######
+
+memb_url = 'https://api.ciscospark.com/v1/memberships'
+memb_body={
+    "roomId": roomid
+}
+
+#get_memberships = requests.get(f'{memb_url}?roomId={roomid}', headers= headers, data= json.dumps(memb_body)).json()
+
+get_memberships = requests.get(memb_url, headers= headers, params= memb_body).json()
+
+#print(json.dumps(get_memberships, indent=2))
