@@ -70,12 +70,22 @@ print (json.dumps(msg_post, indent=2))
 ##### MANAGE MEMBERSHIPS ######
 
 memb_url = 'https://api.ciscospark.com/v1/memberships'
-memb_body={
+PARAMS={
     "roomId": roomid
 }
 
-#get_memberships = requests.get(f'{memb_url}?roomId={roomid}', headers= headers, data= json.dumps(memb_body)).json()
+# List Room membership
 
-get_memberships = requests.get(memb_url, headers= headers, params= memb_body).json()
+# get_memberships = requests.get(memb_url, headers= headers, params= PARAMS).json()
+# print(json.dumps(get_memberships, indent=2))
 
-#print(json.dumps(get_memberships, indent=2))
+# Add member to a room
+
+memb_body = {
+    'roomId': roomid,
+    'personEmail': 'eurl@sparkbot.io'
+}
+
+add_member = requests.post(memb_url, headers= headers, data=json.dumps(memb_body)).json()
+
+print(json.dumps(add_member, indent=2))
