@@ -3,7 +3,7 @@ import requests
 import json
 import pprint
 
-token = 'OGIzYjdjMDktMGI0OC00MGM4LWJkNmEtYjA0N2MzZDZmMGQyNjdhZTM4M2ItMDM1_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+token = ########
 
 #### CREATE A TEAM ######
 
