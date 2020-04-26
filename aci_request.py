@@ -33,18 +33,33 @@ cookie['APIC-cookie'] = token
 
 headers= {'cache-control': 'no-cache'}
 
-# response_epg = requests.get(url, headers= headers, cookies=cookie, verify= False).json()
+# response_AP = requests.get(url, headers= headers, cookies=cookie, verify= False).json()
 
-# print(json.dumps(response_epg, indent=2))
+# print(json.dumps(response_AP, indent=2))
 
 
 ##### GET ENDPOINT GROUP  #####
 
 url = 'https://sandboxapicdc.cisco.com:443/api/node/mo/uni/tn-Heroes/ap-Save_The_Planet/epg-web.json'
 
+# response_epg = requests.get(url, headers= headers, cookies=cookie, verify= False).json()
+
+# print(json.dumps(response_epg, indent=2))
+
+ #### UPDATE ENDPOINT GROUP DESCRIPTION #####
+
+post_payload = {
+    'fvAEPg': {
+        'attributes':{
+            "descr": "",
+            "dn": "uni/tn-Heroes/ap-Save_The_Planet/epg-web"
+        }
+    }
+}
+
+post_desc_epg = requests.post(url, headers= headers, data= json.dumps(post_payload), verify= False, cookies= cookie)
+
+# Check response 
 response_epg = requests.get(url, headers= headers, cookies=cookie, verify= False).json()
 
 print(json.dumps(response_epg, indent=2))
-
-
-
